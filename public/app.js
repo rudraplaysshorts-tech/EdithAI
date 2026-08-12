@@ -5,3 +5,11 @@ async function loadPlans(){const el=document.getElementById('plans');try{const r
 async function loadRelease(){try{const r=await fetch('/api/releases/latest');const d=await r.json();if(!d.release)return;document.getElementById('releaseTitle').textContent=`E.D.I.T.H. ${d.release.version}`;document.getElementById('releaseText').textContent=d.release.notes||'Latest Android release is ready.';document.getElementById('releaseVersion').textContent=d.release.version;document.getElementById('releaseDate').textContent=new Date(d.release.published_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}catch(e){}}
 function startTrialInfo(){toast('The 10-minute trial is delivered through the demo APK release configured by the admin.');location.hash='#pricing'}
 document.getElementById('year').textContent=new Date().getFullYear();loadPlans();loadRelease();
+(function(){
+  const btn=document.getElementById('hambBtn'),menu=document.getElementById('mobileMenu');
+  if(!btn||!menu)return;
+  function close(){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='☰'}
+  function open(){menu.classList.add('open');btn.setAttribute('aria-expanded','true');btn.textContent='✕'}
+  btn.addEventListener('click',()=>menu.classList.contains('open')?close():open());
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+})();
