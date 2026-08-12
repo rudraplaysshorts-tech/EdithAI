@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS plans(id TEXT PRIMARY KEY,name TEXT NOT NULL,description TEXT NOT NULL,amount INTEGER NOT NULL,currency TEXT NOT NULL DEFAULT 'INR',features_json TEXT NOT NULL,active INTEGER NOT NULL DEFAULT 1);
+CREATE TABLE IF NOT EXISTS orders(id TEXT PRIMARY KEY,plan_id TEXT NOT NULL,email TEXT NOT NULL,amount INTEGER NOT NULL,razorpay_order_id TEXT,razorpay_payment_id TEXT,status TEXT NOT NULL DEFAULT 'created',license_key TEXT,created_at TEXT NOT NULL,paid_at TEXT);
+CREATE TABLE IF NOT EXISTS webhook_events(id TEXT PRIMARY KEY,created_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS releases(id TEXT PRIMARY KEY,version TEXT NOT NULL,version_code INTEGER NOT NULL,price INTEGER NOT NULL DEFAULT 59,notes TEXT,file_key TEXT NOT NULL,file_name TEXT NOT NULL,file_size INTEGER NOT NULL,status TEXT NOT NULL DEFAULT 'archived',published_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS activations(license_key TEXT PRIMARY KEY,device_key_hash TEXT,activated_at TEXT,revoked_at TEXT);
+INSERT OR IGNORE INTO plans VALUES('android-release','E.D.I.T.H. Android','Current Android release • one-device license',59,'INR','["10-minute demo available","Full Android assistant","Voice & Live AI","Supported screen & app control","Memory & smart tools","One-device license","Digital delivery"]',1);
