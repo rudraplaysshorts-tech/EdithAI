@@ -4,4 +4,7 @@ CREATE TABLE IF NOT EXISTS webhook_events(id TEXT PRIMARY KEY,created_at INTEGER
 CREATE TABLE IF NOT EXISTS releases(id TEXT PRIMARY KEY,version TEXT NOT NULL,version_code INTEGER NOT NULL,price INTEGER NOT NULL DEFAULT 59,notes TEXT,file_key TEXT NOT NULL,file_name TEXT NOT NULL,file_size INTEGER NOT NULL,status TEXT NOT NULL DEFAULT 'archived',published_at TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS activations(license_key TEXT PRIMARY KEY,device_key_hash TEXT,activated_at TEXT,revoked_at TEXT);
 CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY,email TEXT UNIQUE NOT NULL,phone TEXT,name TEXT,token TEXT UNIQUE NOT NULL,created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+INSERT OR IGNORE INTO settings(key,value) VALUES('free_mode','0');
+INSERT OR IGNORE INTO settings(key,value) VALUES('free_until','');
 INSERT OR IGNORE INTO plans VALUES('android-release','E.D.I.T.H. Android','Current Android release • one-device license',59,'INR','["10-minute demo available","Full Android assistant","Voice & Live AI","Supported screen & app control","Memory & smart tools","One-device license","Digital delivery"]',1);
