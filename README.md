@@ -61,7 +61,7 @@ Use a webhook secret you generate yourself. Never send API secrets, OTPs, passwo
 
 ## Admin release flow
 
-Open `/admin.html`, enter the server admin token, choose an APK, enter version/release notes/price and publish. The previous live release is archived and the new release becomes live. The website's latest-release card updates automatically.
+Open `/qwerty.html`, enter the server admin token, choose an APK, enter version/release notes/price and publish. The previous live release is archived and the new release becomes live. The website's latest-release card updates automatically.
 
 The public download endpoint is:
 `/api/download/latest?license=YOUR_LICENSE_KEY`

@@ -44,7 +44,7 @@ Your website will be available on the Cloudflare-generated hostname.
 That real URL is the one to enter in Razorpay onboarding under Website.
 
 Admin:
-`https://YOUR-HOST/admin.html`
+`https://YOUR-HOST/qwerty.html`
 
 Razorpay webhook:
 `https://YOUR-HOST/api/webhooks/razorpay`

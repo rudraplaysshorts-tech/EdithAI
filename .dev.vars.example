@@ -1,0 +1,4 @@
+RAZORPAY_KEY_ID=rzp_test_xxx
+RAZORPAY_KEY_SECRET=replace_me
+RAZORPAY_WEBHOOK_SECRET=replace_me
+ADMIN_TOKEN=replace_me

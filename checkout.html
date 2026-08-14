@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Review your order — E.D.I.T.H.</title><link rel="stylesheet" href="/styles.css"><style>
+.checkout-wrap{max-width:760px;margin:auto;padding:50px 24px 110px}
+.checkout-wrap .section-head{margin-bottom:28px}
+.co-card{border:1px solid var(--line);border-radius:20px;background:#111019;padding:26px;margin-bottom:20px}
+.co-card h3{margin:0 0 16px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#a18eff}
+.co-plan{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.co-plan h4{margin:0 0 6px;font-size:20px}
+.co-plan p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.co-plan .price{margin:0;font-size:26px}
+.co-plan .price small{font-size:11px}
+.co-list{color:#aaa5b5;font-size:13px;line-height:2;padding-left:19px;margin:14px 0 0}
+.co-row{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.co-row:first-child{border-top:0}
+.co-row b{color:var(--text);font-weight:800}
+.co-total{display:flex;justify-content:space-between;align-items:center;padding-top:14px;margin-top:6px;border-top:1px solid var(--line)}
+.co-total b{font-size:26px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:7px}
+.field input{width:100%;padding:14px;border-radius:12px;border:1px solid #332b45;background:#0b0a10;color:white;font-size:14px}
+.co-note{display:flex;gap:12px;border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#0f0d15;color:#a49eaf;font-size:12.5px;line-height:1.6;margin-bottom:18px}
+.co-agree{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:18px}
+.co-agree a{color:#bdadff}
+.co-back{color:#a18eff;font-size:13px;text-decoration:none;display:inline-block;margin-bottom:18px}
+.account-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.account-row div{color:var(--muted);font-size:13px;line-height:1.7}
+.account-row b{color:var(--text)}
+.switch-link{color:#a18eff;font-size:12.5px;text-decoration:none;white-space:nowrap}
+</style><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"></head><body>
+<header class="nav"><a class="brand" href="/"><span class="logo"><img src="/assets/edith-logo-256.png" alt="E.D.I.T.H. logo" width="36" height="36"></span><span>E.D.I.T.H.</span></a></header>
+<main class="checkout-wrap">
+  <a class="co-back" href="/#pricing">← Back</a>
+
+  <div id="loginGate" class="co-card">
+    <h3>Login karo — ek baar</h3>
+    <p style="color:var(--muted);font-size:13px;line-height:1.7;margin:0 0 18px">Ye info sirf ek baar bharni hai. Uske baad ye browser hamesha logged-in rahega — dobara nahi maangenge.</p>
+    <div class="field"><label>Full name</label><input id="gName" placeholder="Aapka naam"></div>
+    <div class="field"><label>Email</label><input id="gEmail" type="email" placeholder="you@example.com"></div>
+    <div class="field"><label>Phone number</label><input id="gPhone" type="tel" placeholder="10-digit mobile number"></div>
+    <p style="color:#736d80;font-size:11.5px;line-height:1.6;margin:0 0 16px">Phone number sirf order confirm karne ke liye rakha jaata hai, kisi aur ko nahi diya jaata.</p>
+    <button class="buy" id="loginBtn">Continue →</button>
+    <p id="loginMsg" style="color:#8f8999;font-size:12px;margin-top:12px"></p>
+  </div>
+
+  <div id="checkoutBody" style="display:none">
+    <div class="section-head"><span>SECURE CHECKOUT</span><h2>Review your order</h2><p>Digital product · delivered instantly after payment · prices in Indian Rupees (INR), inclusive of all applicable taxes.</p></div>
+
+    <div class="co-card">
+      <h3>Logged in as</h3>
+      <div class="account-row"><div><b id="accName"></b><br><span id="accEmail"></span> · <span id="accPhone"></span></div><a class="switch-link" href="#" id="switchAcc">Not you? Switch account</a></div>
+    </div>
+
+    <div class="co-card">
+      <h3>Your order</h3>
+      <div id="planBox">Loading plan…</div>
+    </div>
+
+    <div class="co-card">
+      <h3>Order summary</h3>
+      <div class="co-row"><span>Subtotal</span><b id="sumSub">—</b></div>
+      <div class="co-row"><span>Taxes</span><span>Included</span></div>
+      <div class="co-row"><span>Delivery</span><span>Free · digital delivery</span></div>
+      <div class="co-total"><span>Total payable</span><b id="sumTotal">—</b></div>
+    </div>
+
+    <div class="co-card">
+      <h3>Delivery details</h3>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin:0">Your license key is generated the moment payment is verified. The latest Android APK is delivered as a direct download link — no physical shipping, nothing to wait for.</p>
+    </div>
+
+    <div class="co-note">🔒<div><b>Paying with GPay, PhonePe or any UPI app?</b><br>On the payment screen, choose <b>UPI</b> — you can then pay with any UPI app, your UPI ID, or by scanning the QR code. Cards and net banking are also accepted.</div></div>
+
+    <label class="co-agree"><input id="coAgree" type="checkbox" style="margin-top:3px"><span>I agree to the <a href="/terms.html" target="_blank">Terms</a> and the <a href="/refund.html" target="_blank">Cancellation & Refund Policy</a>, and understand this is a digital product delivered instantly.</span></label>
+
+    <button class="buy" id="payBtn" style="font-size:15px">🔒 Pay securely</button>
+    <p id="coMsg" style="color:#8f8999;font-size:12px;margin-top:12px;text-align:center"></p>
+  </div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const money=n=>"₹"+Number(n).toLocaleString("en-IN");
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+const qs=new URLSearchParams(location.search);
+let currentPlan=null,me=null;
+
+async function checkLogin(){
+  const r=await fetch('/api/auth/me',{credentials:'same-origin'});
+  const d=await r.json();
+  if(d.user){me=d.user;showCheckout()}else{$('loginGate').style.display='block';$('checkoutBody').style.display='none'}
+}
+
+function showCheckout(){
+  $('loginGate').style.display='none';
+  $('checkoutBody').style.display='block';
+  $('accName').textContent=me.name||'';
+  $('accEmail').textContent=me.email||'';
+  $('accPhone').textContent='📞 '+(me.phone||'—');
+  loadPlan();
+}
+
+async function doLogin(){
+  const name=$('gName').value.trim(),email=$('gEmail').value.trim(),phone=$('gPhone').value.trim();
+  if(!name)return $('loginMsg').textContent='Naam daalo.';
+  if(!email||!email.includes('@'))return $('loginMsg').textContent='Sahi email daalo.';
+  if(!phone||phone.replace(/\D/g,'').length<10)return $('loginMsg').textContent='Sahi phone number daalo (10 digit).';
+  $('loginMsg').textContent='Login ho raha hai…';
+  try{
+    const r=await fetch('/api/auth/login',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({name,email,phone})});
+    const d=await r.json();
+    if(!r.ok)throw Error(d.error||'Login nahi ho paaya');
+    me=d.user;showCheckout();
+  }catch(e){$('loginMsg').textContent=e.message}
+}
+
+async function switchAccount(e){
+  e.preventDefault();
+  await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'});
+  me=null;$('gName').value='';$('gEmail').value='';$('gPhone').value='';
+  $('loginGate').style.display='block';$('checkoutBody').style.display='none';
+}
+
+async function loadPlan(){
+  const r=await fetch('/api/plans');const d=await r.json();
+  if(!d.plans||!d.plans.length){$('planBox').innerHTML='<p style="color:var(--muted)">No plan available right now.</p>';return}
+  const wanted=qs.get('plan');
+  currentPlan=d.plans.find(p=>p.id===wanted)||d.plans[0];
+  $('planBox').innerHTML=`<div class="co-plan"><div><h4>${esc(currentPlan.name)}</h4><p>${esc(currentPlan.description)}</p><ul class="co-list">${(currentPlan.features||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="price">${money(currentPlan.amount)}<br><small>one-time</small></div></div>`;
+  $('sumSub').textContent=money(currentPlan.amount);
+  $('sumTotal').textContent=money(currentPlan.amount);
+}
+
+async function pay(){
+  if(!currentPlan||!me)return;
+  if(!$('coAgree').checked)return $('coMsg').textContent='Terms aur Refund policy accept karna zaroori hai.';
+  $('coMsg').textContent='Order shuru kiya ja raha hai…';
+  try{
+    const r=await fetch('/api/orders',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({plan:currentPlan.id,email:me.email,phone:me.phone})});
+    const d=await r.json();
+    if(!r.ok)throw Error(d.error||'Order start nahi ho paaya');
+    await new Promise((resolve,reject)=>{if(window.Razorpay)return resolve();const s=document.createElement('script');s.src='https://checkout.razorpay.com/v1/checkout.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s)});
+    new Razorpay({key:d.key_id,amount:d.amount,currency:'INR',name:'E.D.I.T.H.',description:d.description,order_id:d.order_id,prefill:{name:me.name,email:me.email,contact:me.phone},theme:{color:'#7958ff'},handler:async resp=>{
+      $('coMsg').textContent='Payment verify ho raha hai…';
+      const v=await fetch('/api/payment/verify',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({...resp,plan:currentPlan.id,email:me.email})});
+      const out=await v.json();
+      if(out.ok)location.href='/success.html?license='+encodeURIComponent(out.license_key||'');
+      else $('coMsg').textContent=out.error||'Payment verify nahi ho paaya.';
+    }}).open();
+  }catch(e){$('coMsg').textContent=e.message||'Checkout start nahi ho paaya.'}
+}
+
+$('loginBtn').addEventListener('click',doLogin);
+$('switchAcc').addEventListener('click',switchAccount);
+$('payBtn').addEventListener('click',pay);
+checkLogin();
+</script>
+</body></html>
