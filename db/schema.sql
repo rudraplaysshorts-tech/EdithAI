@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS releases(id TEXT PRIMARY KEY,version TEXT NOT NULL,ve
 CREATE TABLE IF NOT EXISTS activations(license_key TEXT PRIMARY KEY,device_key_hash TEXT,activated_at TEXT,revoked_at TEXT);
 CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY,email TEXT UNIQUE NOT NULL,phone TEXT,name TEXT,token TEXT UNIQUE NOT NULL,created_at TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS login_otps(email TEXT PRIMARY KEY,otp_hash TEXT NOT NULL,name TEXT,phone TEXT,attempts INTEGER NOT NULL DEFAULT 0,expires_at INTEGER NOT NULL,created_at INTEGER NOT NULL);
 INSERT OR IGNORE INTO settings(key,value) VALUES('free_mode','0');
 INSERT OR IGNORE INTO settings(key,value) VALUES('free_until','');
 INSERT OR IGNORE INTO plans VALUES('android-release','E.D.I.T.H. Android','Current Android release • one-device license',59,'INR','["10-minute demo available","Full Android assistant","Voice & Live AI","Supported screen & app control","Memory & smart tools","One-device license","Digital delivery"]',1);

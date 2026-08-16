@@ -14,3 +14,10 @@ database_id = "397680f9-0151-4035-a539-3803aa53ecab"
 [vars]
 # Secrets: RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET, ADMIN_TOKEN
 # Optional (free): TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID — set both to get instant order/payment alerts with the customer's phone number
+# Optional: RESEND_API_KEY, OTP_FROM_EMAIL — set both to email real login codes instead of returning them in the API response
+#
+# Note: this project stores APKs as an external direct-download URL (e.g. a GitHub Releases
+# asset link) pasted into the admin panel — it does NOT use Cloudflare R2. There is
+# intentionally no [[r2_buckets]] binding here. If you want APKs hosted in R2 instead,
+# that upload flow would need to be added (presigned PUT from the admin panel + an R2
+# binding + a worker route that serves/redirects to the object).
