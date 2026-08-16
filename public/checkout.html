@@ -41,6 +41,10 @@
       <button class="buy" id="loginBtn">Send code →</button>
     </div>
     <div id="loginStep2" style="display:none">
+      <div id="devOtpBanner" style="display:none;background:#3d2e00;border:1px solid #f2b900;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+        <p style="color:#ffd54f;font-weight:700;font-size:13px;margin:0 0 4px">⚠️ Email service abhi set nahi hai</p>
+        <p style="color:#f2e5c0;font-size:12.5px;margin:0">Test code neeche apne aap bhar diya gaya hai — bas "Verify" dabao.</p>
+      </div>
       <div class="field"><label>6-digit code sent to your email</label><input id="gOtp" inputmode="numeric" maxlength="6" placeholder="000000"></div>
       <button class="buy" id="verifyBtn">Verify & continue →</button>
       <p style="margin-top:10px"><a href="#" id="resendLink" class="switch-link">Resend code</a></p>
@@ -115,7 +119,14 @@ async function requestOtp(){
     const d=await r.json();
     if(!r.ok)throw Error(d.error||'Code bhej nahi paaye');
     $('loginStep1').style.display='none';$('loginStep2').style.display='block';
-    $('loginMsg').textContent=d.emailed?'Code aapke email par bheja gaya hai.':('Email nahi bheja ja saka. Test code: '+(d.dev_otp||''));
+    if(d.emailed){
+      $('devOtpBanner').style.display='none';
+      $('loginMsg').textContent='Code aapke email par bheja gaya hai.';
+    }else{
+      $('devOtpBanner').style.display='block';
+      $('gOtp').value=d.dev_otp||'';
+      $('loginMsg').textContent='';
+    }
   }catch(e){$('loginMsg').textContent=e.message}
 }
 async function verifyOtp(){
@@ -135,6 +146,7 @@ async function switchAccount(e){
   await fetch('/api/auth/logout',{method:'POST',credentials:'same-origin'});
   me=null;$('gName').value='';$('gEmail').value='';$('gPhone').value='';$('gOtp').value='';
   $('loginStep1').style.display='block';$('loginStep2').style.display='none';
+  $('devOtpBanner').style.display='none';
   $('loginGate').style.display='block';$('checkoutBody').style.display='none';
 }
 
